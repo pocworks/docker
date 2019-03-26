@@ -1,0 +1,16 @@
+language: bash
+services: docker
+
+before_script:
+  - env | sort
+  - cd "$VERSION"
+  - image="elasticsearch"
+  - version="6.6.2"
+  - repository="pocworks/elasticsearch"
+
+script:
+  - docker build -t "$image:$version" .
+  - docker tag $image:$version $repository:$image-$version
+  - docker images
+  - docker login -u "pocworks" -p $password
+  - docker push $repository:$image-$version
