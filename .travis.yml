@@ -1,6 +1,10 @@
 language: bash
 services: docker
 
+branches:
+  only:
+  - docker-elasticsearch  
+
 before_script:
   - env | sort
   - cd "$VERSION"
